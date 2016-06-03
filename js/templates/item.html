@@ -43,6 +43,10 @@
           <span class="textSize22px textOpacity1 fontWeight500 marginRight2">
             <%= ob.intlNumFormat(ob.vendorBTCPrice, 8) %> BTC
           </span>
+          /
+          <span class="textSize22px textOpacity1 fontWeight500 marginRight2">
+            <%= ob.intlNumFormat(ob.vendorDSHPrice, 8) %> DSH
+          </span>
           <% if(ob.userCurrencyCode != 'BTC'){ %>
           <span class="textSize22px textOpacity65">(<%= ob.displayPrice %>)</span>
           <% } %>
@@ -178,7 +182,7 @@
         <div class="padding20 marginBottom12 width100 alignCenter">
           <div class="spinnerWrapper">
             <i class="ion-android-sync spinner textSize24px"></i>
-          </div>         
+          </div>
         </div>
         <% } %>
         <div class="js-reviewsContainer <% (ob.fetchingRatings) && print ('hide') %>"></div>

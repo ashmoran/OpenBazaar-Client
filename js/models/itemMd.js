@@ -195,6 +195,7 @@ module.exports = window.Backbone.Model.extend({
         vendorInternationalShipping = 0,
         vendorCurrencyInBitcoin = 0,
         vendorPriceInBitCoin = 0,
+        vendorPriceInDash = 0,
         vendorDomesticShippingInBitCoin = 0,
         vendorInternationalShippingInBitCoin = 0,
         vendToUserBTCRatio = 0,
@@ -206,14 +207,20 @@ module.exports = window.Backbone.Model.extend({
     }
 
     if (userCCode) {
+      // DASHTODO: pass in dsAve?
       getBTPrice(vendorCCode, function(btAve){
+        dsAve = btAve * 66;
         vendorCurrencyInBitcoin = btAve;
+        vendorCurrencyInDash = dsAve;
         vendorPriceInBitCoin = Number(vendorPrice / btAve);
+        vendorPriceInDash = Number(vendorPrice / dsAve);
+        // DASHTODO: shipping (physical items)
         vendorDomesticShippingInBitCoin = Number(vendorDomesticShipping / btAve);
         vendorInternationalShippingInBitCoin = Number(vendorInternationalShipping / btAve);
         //if vendor and user currency codes are the same, multiply by one to avoid rounding errors
         vendToUserBTCRatio = userCCode == vendorCCode ? 1 : window.currentBitcoin/vendorCurrencyInBitcoin;
         newAttributes.vendorBTCPrice = vendorPriceInBitCoin;
+        newAttributes.vendorDSHPrice = vendorPriceInDash;
         newAttributes.domesticShippingBTC = vendorDomesticShippingInBitCoin;
         newAttributes.internationalShippingBTC = vendorInternationalShippingInBitCoin;
 
