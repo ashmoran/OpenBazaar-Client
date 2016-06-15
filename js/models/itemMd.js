@@ -11,9 +11,12 @@ module.exports = window.Backbone.Model.extend({
     price: 0, //set below
     displayPrice: 0, //set below
     vendorBTCPrice: 0, //set below
+    vendorDASHPrice: 0, //set below
     domesticShipping: 0, //set below
     displayDomesticShipping: 0, //set below
     domesticShippingBTC: 0, //set below
+    // DASHTODO:
+    // domesticShippingDASH: 0, //set below
     internationalShipping: 0, //set below
     displayInternationalShipping: 0, //set below
     internationalShippingBTC: 0, //set below
@@ -195,6 +198,8 @@ module.exports = window.Backbone.Model.extend({
         vendorInternationalShipping = 0,
         vendorCurrencyInBitcoin = 0,
         vendorPriceInBitCoin = 0,
+        // I added this for symmetry but it's not necessary (yet)
+        // vendorCurrencyInDash = 0,
         vendorPriceInDash = 0,
         vendorDomesticShippingInBitCoin = 0,
         vendorInternationalShippingInBitCoin = 0,
@@ -209,9 +214,8 @@ module.exports = window.Backbone.Model.extend({
     if (userCCode) {
       // DASHTODO: pass in dsAve?
       getBTPrice(vendorCCode, function(btAve){
-        dsAve = btAve * 66;
+        var dsAve = btAve / 66; // Fake price: 1 DASH = 1/66 BTC
         vendorCurrencyInBitcoin = btAve;
-        vendorCurrencyInDash = dsAve;
         vendorPriceInBitCoin = Number(vendorPrice / btAve);
         vendorPriceInDash = Number(vendorPrice / dsAve);
         // DASHTODO: shipping (physical items)
@@ -220,7 +224,7 @@ module.exports = window.Backbone.Model.extend({
         //if vendor and user currency codes are the same, multiply by one to avoid rounding errors
         vendToUserBTCRatio = userCCode == vendorCCode ? 1 : window.currentBitcoin/vendorCurrencyInBitcoin;
         newAttributes.vendorBTCPrice = vendorPriceInBitCoin;
-        newAttributes.vendorDSHPrice = vendorPriceInDash;
+        newAttributes.vendorDASHPrice = vendorPriceInDash;
         newAttributes.domesticShippingBTC = vendorDomesticShippingInBitCoin;
         newAttributes.internationalShippingBTC = vendorInternationalShippingInBitCoin;
 
