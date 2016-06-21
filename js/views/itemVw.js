@@ -8,6 +8,7 @@ var __ = require('underscore'),
     RatingCl = require('../collections/ratingCl'),
     baseVw = require('./baseVw'),
     buyWizardVw = require('./buyWizardVw'),
+    buyDashWizardVw = require('./buyDashWizardVw'),
     ReviewsVw = require('./reviewsVw');
 
 module.exports = baseVw.extend({
@@ -17,6 +18,7 @@ module.exports = baseVw.extend({
     'click .js-itemReviewsTab': 'reviewsClick',
     'click .js-shippingTab': 'shippingClick',
     'click .js-buyButton': 'buyClick',
+    'click .js-buyDashButton': 'buyDashClick',
     'click .js-photoGallery': 'photoGalleryClick',
     'click .js-itemRating': 'clickItemRating'
   },
@@ -64,7 +66,7 @@ module.exports = baseVw.extend({
     this.shipsLocal = this.shippingRegions.indexOf(this.shippingOrigin) > -1;
     this.nonLocalRegions = __.without(this.shippingRegions, this.shippingOrigin);
     this.worldwide = this.shippingRegions.length === 1 && this.shippingRegions[0] === 'ALL';
-    
+
     this.render();
   },
 
@@ -91,7 +93,7 @@ module.exports = baseVw.extend({
       var imageExtension = self.model.get('imageExtension') || "";
     });
     */
-    
+
     //el must be passed in from the parent view
     loadTemplate('./js/templates/item.html', function(loadedTemplate) {
       loadTemplate('./js/templates/ratingStars.html', function(starsTemplate) {
@@ -132,7 +134,7 @@ module.exports = baseVw.extend({
   photoGalleryClick: function(){
     $('.js-photoGallery').colorbox({
       'transition': 'fade',
-      'rel': 'js-photoGallery', 
+      'rel': 'js-photoGallery',
       'photo': true,
       'fadeOut': 0,
       'previous': '<span class="arrowIcon ion-ios-arrow-back"></span>',
@@ -181,6 +183,15 @@ module.exports = baseVw.extend({
     this.buyWizardView = new buyWizardVw({model: this.model, userModel: this.options.userModel, worldwide: this.worldwide, shippingRegions: this.shippingRegions});
     this.registerChild(this.buyWizardView);
     this.buyWizardView.on('close', () => this.buyWizardView.remove())
+      .render()
+      .open();
+  },
+
+  buyDashClick: function(){
+    this.buyDashWizardView && this.buyDashWizardView.remove();
+    this.buyDashWizardView = new buyDashWizardVw({model: this.model, userModel: this.options.userModel, worldwide: this.worldwide, shippingRegions: this.shippingRegions});
+    this.registerChild(this.buyDashWizardView);
+    this.buyDashWizardView.on('close', () => this.buyDashWizardView.remove())
       .render()
       .open();
   },

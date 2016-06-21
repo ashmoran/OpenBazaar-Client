@@ -1,25 +1,25 @@
-<div class="modal-hero js-buyWizardHero custCol-text shadow-inner1-light"
+<div class="modal-hero js-buyDashWizardHero custCol-text shadow-inner1-light"
      style="background-image: url(<%= ob.serverUrl %>get_image?hash=<%= ob.vendor_offer.listing.item.image_hashes[0] %><%= ob.imageExtension %>), url(imgs/defaultBanner.png);">
-  <div class="js-buyWizardMap buyWizardMap positionRelative hide" style="height: 262px">
+  <div class="js-buyDashWizardMap buyDashWizardMap positionRelative hide" style="height: 262px">
     <div class="js-mapSpinner txt-col1 ion-android-sync spinner spinner-slow icon-large icon-circle-background1 zIndex1 fullCentered" style="border: 1px solid #aaa;"></div>
     <div class="flexContainer mapWrap"></div>
   </div>
-  <div class="modal-hero modal-heroFullHeightNoButtons js-buyWizardSpinner hide background1 custCol-primary">
+  <div class="modal-hero modal-heroFullHeightNoButtons js-buyDashWizardSpinner hide background1 custCol-primary">
     <div class="width100 txt-center vCentered">
       <div class="txt-col1 ion-android-sync spinner spinner-slow icon-gigantic icon-circle-background1 rowTop50 row20"></div>
       <h3 class="custCol-text padding30"><%= polyglot.t('CheckExchanges') %> </h3>
     </div>
   </div>
-  <div class="modal-hero modal-heroFullHeightNoButtons padding30 js-buyWizardPay hide background1 custCol-primary">
+  <div class="modal-hero modal-heroFullHeightNoButtons padding30 js-buyDashWizardPay hide background1 custCol-primary">
     <div class="width100 row20">
-      <img class="blockCenter qrCode js-buyWizardPayQRCode" height="250" width="250" src="imgs/defaultItem.png"/>
+      <img class="blockCenter qrCode js-buyDashWizardPayQRCode" height="250" width="250" src="imgs/defaultItem.png"/>
     </div>
     <div class="txt-bright pad20">
       <div class="txt-center row10 textSize20px custCol-text">
         <%=
           polyglot.t('buyFlow.SendBTCtoAddress', {
-            amount: '<span class="js-buyWizardDetailsTotalBTC"></span>',
-            recipient: '<a class="textSize16px js-buyWizardPayLink custCol-text"><span class="js-buyWizardPayURL"></span></a>'
+            amount: '<span class="js-buyDashWizardDetailsTotalBTC"></span>',
+            recipient: '<a class="textSize16px js-buyDashWizardPayLink custCol-text"><span class="js-buyDashWizardPayURL"></span></a>'
           })
         %>
       </div>
@@ -27,9 +27,9 @@
         <input type="checkbox" class="textSize11px fieldItem thin" id="BuyWizardQRDetailsInput">
         <label for="BuyWizardQRDetailsInput" class="textSize11px  custCol-text"> <%= polyglot.t('AdditionalPaymentDataInfo') %></label>
       </div>
-      <a class="btn btn-txt btn-wide row10 js-buyWizardPayCopy custCol-secondary  custCol-text"><i class="ion-clipboard"></i> <%= polyglot.t('buyFlow.CopyAddress') %></a>
-      <a class="btn btn-txt btn-wide row10 js-buyWizardPayLink custCol-secondary custCol-text"><i class="ion-link"></i> <%= polyglot.t('buyFlow.OpenAddress') %></a>
-      <a class="btn btn-txt btn-wide js-buyWizardPayCheck custCol-secondary custCol-text"><i class="ion-refresh"></i> <%= polyglot.t('buyFlow.RefreshPayment') %></a>
+      <a class="btn btn-txt btn-wide row10 js-buyDashWizardPayCopy custCol-secondary  custCol-text"><i class="ion-clipboard"></i> <%= polyglot.t('buyFlow.CopyAddress') %></a>
+      <a class="btn btn-txt btn-wide row10 js-buyDashWizardPayLink custCol-secondary custCol-text"><i class="ion-link"></i> <%= polyglot.t('buyFlow.OpenAddress') %></a>
+      <a class="btn btn-txt btn-wide js-buyDashWizardPayCheck custCol-secondary custCol-text"><i class="ion-refresh"></i> <%= polyglot.t('buyFlow.RefreshPayment') %></a>
       <div class="rowTop10 txt-center note custCol-text">
         <%= polyglot.t('buyFlow.paymentNote') %>
       </div>
@@ -46,30 +46,30 @@
       </div>
     </div>
   </div>
-  <div class="modal-hero js-buyWizardOrderSummary background1 hide">
+  <div class="modal-hero js-buyDashWizardOrderSummary background1 hide">
     <div class="width100 txt-center">
       <div class="txt-col3 ion-checkmark icon-huge icon-circle-background1 rowtop30 row20"></div>
       <h3 class="txt-bright"><%= polyglot.t('buyFlow.paymentSent') %> </h3>
     </div>
   </div>
 </div>
-<div class="homeModal-accordion accordion js-buyWizardAccordion">
+<div class="homeModal-accordion accordion js-buyDashWizardAccordion">
   <div class="accordion-window">
     <% if(ob.user.refund_address === ""){ %>
       <div class="accordion-child" id="BuyWizardBitcoinWallet">
         <div class="bar barTxt h6 paddingLeft15 custCol-secondary">
-          <%= polyglot.t('buyFlow.BitcoinWallet') %>
-          <div class="floatRight marginTop9"><img src="imgs/bitcoin-accepted.png" style="width: 80px;" /></div>
+          <%= polyglot.t('buyFlow.DashWallet') %>
+          <div class="floatRight marginTop9"><img src="imgs/dash-accepted.png" style="width: 80px;" /></div>
         </div>
         <div class="flexContainer flex-border customThemeScrollbar homeModal-settings homeModal-settings-noSearch scrollOverflow custCol-primary alignCenter">
-          <h2 class="margin0 marginTop80"><%= polyglot.t('buyFlow.HaveWallet') %></h2>
+          <h2 class="margin0 marginTop80"><%= polyglot.t('buyFlow.HaveDashWallet') %></h2>
           <p class="textOpacity75 fontSize15"><%= polyglot.t('buyFlow.QuickSetup') %></p>
         </div>
         <div class="bar barFlush custCol-secondary borderBottomLeftRaidus3 borderBottomRightRaidus3">
-          <a class="btn btn-bar btn-half js-buyWizardDoesntHaveWallet custCol-secondary borderBottomLeftRaidus3 borderRight custCol-border-primary">
-            <%= polyglot.t('No') %>
+          <a class="btn btn-bar btn-half js-buyDashWizardDoesntHaveWallet custCol-secondary borderBottomLeftRaidus3 borderRight custCol-border-primary">
+            <!-- <%= polyglot.t('No') %> -->
           </a>
-          <a class="btn btn-bar btn-half js-buyWizardHasWallet custCol-secondary custCol-border-primary borderBottomRightRaidus3">
+          <a class="btn btn-bar btn-half js-buyDashWizardHasWallet custCol-secondary custCol-border-primary borderBottomRightRaidus3">
             <%= polyglot.t('Yes') %>
           </a>
         </div>
@@ -78,7 +78,7 @@
       <div class="accordion-child" id="BuyWizardCreateWallet">
         <div class="bar barTxt h6 paddingLeft15 custCol-secondary">
           <%= polyglot.t('buyFlow.CreateWallet') %>
-          <div class="floatRight marginTop9"><img src="imgs/bitcoin-accepted.png" style="width: 80px;" /></div>
+          <div class="floatRight marginTop9"><img src="imgs/dash-accepted.png" style="width: 80px;" /></div>
         </div>
         <div class="flexContainer flex-border customThemeScrollbar homeModal-settings homeModal-settings-noSearch scrollOverflow custCol-primary">
           <div class="flexRow custCol-border js-BuyWizardWallets">
@@ -210,6 +210,24 @@
               </div>
             </div>
 
+            <!-- Coinkite -->
+            <div class="width100 table padding15 borderBottom1 custCol-border js-bitcoinWalletProvider">
+              <div class="floatLeft marginRight8">
+                <a href="https://coinkite.com/promo/nwt1" target="_blank">
+                  <img src="imgs/wallet-providers/coinkite.png" class="thumbnail thumbnail-large-slim " />
+                </a>
+              </div>
+              <div class="floatLeft width420 marginTop4">
+                <div class="clearfix">
+                  <div class="marginBottom2 marginRight5 lineHeight21 textOpacity1 fontSize15">
+                    <a href="https://coinkite.com/promo/nwt1" class="js-externalLink textOpacity1">Coinkite <span class="ion-android-open fontSize10"></span></a>
+                    <span class="textOpacity50 fontSize12"><%= polyglot.t('walletProviders.WalletOnly') %></span>
+                  </div>
+                  <div class="textOpacity75 fontSize14"><%= polyglot.t('walletProviders.CoinkiteTagline') %></div>
+                </div>
+              </div>
+            </div>
+
             <!-- BitGo -->
             <div class="width100 table padding15 borderBottom1 custCol-border js-bitcoinWalletProvider">
               <div class="floatLeft marginRight8">
@@ -235,7 +253,7 @@
             <span class="ion-chevron-left fontSize10 marginRight2 textOpacity75"></span>
             <%= polyglot.t('Back') %>
           </a>
-          <a class="btn btn-bar btn-half js-buyWizardWalletNext custCol-secondary custCol-border-primary borderBottomRightRaidus3">
+          <a class="btn btn-bar btn-half js-buyDashWizardWalletNext custCol-secondary custCol-border-primary borderBottomRightRaidus3">
             <%= polyglot.t('IHaveAWalletNow') %>
             <span class="ion-chevron-right fontSize10 marginLeft2 textOpacity75"></span>
           </a>
@@ -255,10 +273,10 @@
             <div class="flexRow custCol-border">
               <div class="rowItem padding2015">
                 <div class="floatLeft marginRight10">
-                  <input type="radio" name="radioPaymentType" class="marginTop4" id="buyWizardPaymentTypeModerated" />
+                  <input type="radio" name="radioPaymentType" class="marginTop4" id="buyDashWizardPaymentTypeModerated" />
                 </div>
                 <div class="width450 floatLeft">
-                  <label for="buyWizardPaymentTypeModerated" class="clickable">
+                  <label for="buyDashWizardPaymentTypeModerated" class="clickable">
                     <div class="fontSize15">
                       <%= polyglot.t('buyFlow.ModeratedPayment') %>
                       <span class="allCaps textOpacity50 fontSize13"><%= polyglot.t('Recommended') %></span>
@@ -268,7 +286,7 @@
                     </div>
                   </label>
 
-                  <div class="hide marginTop12 js-buyWizardModeratorList">
+                  <div class="hide marginTop12 js-buyDashWizardModeratorList">
                     <div class="table padding8 border1 custCol-border borderBottom0">
                       <div class="floatLeft textOpacity75"><%= polyglot.t('Moderators') %></div>
                       <div class="floatRight textOpacity75"><%= polyglot.t('buyFlow.DisputeFee') %> <span class="ion-help-circled fontSize12 custCol-text tooltip tooltip-left" data-tooltip="<%= polyglot.t('buyFlow.ModeratorFeeHelper') %>"></span></div>
@@ -278,11 +296,11 @@
                         <% moderator.numFee = moderator.fee.replace(/[^\d.-]/g, ''); %>
                         <div class="flexRow">
                           <div class="">
-                            <label for="buyWizardModeratorRadio<%= i %>" class="textOpacity1 clickable">
+                            <label for="buyDashWizardModeratorRadio<%= i %>" class="textOpacity1 clickable">
                               <div class="table padding8 border1 custCol-border">
                                 <div>
                                   <div class="floatLeft marginTop8">
-                                    <input type="radio" class="js-buyWizardModeratorRadio floatLeft" name="moderator" id="buyWizardModeratorRadio<%= i %>" value="<%= i %>"/>
+                                    <input type="radio" class="js-buyDashWizardModeratorRadio floatLeft" name="moderator" id="buyDashWizardModeratorRadio<%= i %>" value="<%= i %>"/>
                                   </div>
                                   <div class="thumbnail thumbnail-large-slim floatLeft marginLeft7"
                                        <% if(moderator.avatar){ %>
@@ -319,16 +337,16 @@
           <div class="flexRow custCol-border">
             <div class="rowItem padding2015">
               <div class="floatLeft marginRight10">
-                <input type="radio" name="radioPaymentType" class="marginTop4" id="buyWizardPaymentTypeDirect" />
+                <input type="radio" name="radioPaymentType" class="marginTop4" id="buyDashWizardPaymentTypeDirect" />
               </div>
               <div class="width450 floatLeft">
-                <label for="buyWizardPaymentTypeDirect" class="clickable">
+                <label for="buyDashWizardPaymentTypeDirect" class="clickable">
                   <div class="fontSize15"><%= window.polyglot.t('buyFlow.DirectPayment') %></div>
                   <div class="textOpacity75 fontSize14 marginTop4">
                     <%= polyglot.t('buyFlow.DirectPaymentDescription') %>
                   </div>
                 </label>
-                <input type="radio" class="fieldItem js-buyWizardModeratorRadio hide" name="moderator" id="buyWizardNoModerator" value="direct" <% if(ob.vendor_offer.listing.moderators && ob.vendor_offer.listing.moderators.length === 0){ %>checked<% } %> />
+                <input type="radio" class="fieldItem js-buyDashWizardModeratorRadio hide" name="moderator" id="buyDashWizardNoModerator" value="direct" <% if(ob.vendor_offer.listing.moderators && ob.vendor_offer.listing.moderators.length === 0){ %>checked<% } %> />
               </div>
             </div>
           </div>
@@ -336,14 +354,14 @@
       </div>
       <div class="bar barFlush custCol-secondary borderBottomLeftRaidus3 borderBottomRightRaidus3">
          <% if(ob.user.refund_address === ""){ %>
-          <a class="btn btn-bar btn-half js-buyWizardModBack custCol-secondary borderBottomLeftRaidus3 borderRight custCol-border-primary">
+          <a class="btn btn-bar btn-half js-buyDashWizardModBack custCol-secondary borderBottomLeftRaidus3 borderRight custCol-border-primary">
             <span class="ion-chevron-left fontSize10 marginRight2 textOpacity75"></span>
             <%= polyglot.t('Back') %>
           </a>
         <% }else{ %>
           <a class="btn btn-bar btn-half js-closeBuyWizardModal custCol-secondary borderBottomLeftRaidus3 borderRight custCol-border"><%= polyglot.t('Cancel') %></a>
         <% } %>
-        <a class="btn btn-bar btn-half js-buyWizardModNext <% if(ob.vendor_offer.listing.moderators != null && ob.vendor_offer.listing.moderators.length > 0){ print('disabled'); } %> custCol-secondary custCol-border-primary borderBottomRightRaidus3  borderRight custCol-border">
+        <a class="btn btn-bar btn-half js-buyDashWizardModNext <% if(ob.vendor_offer.listing.moderators != null && ob.vendor_offer.listing.moderators.length > 0){ print('disabled'); } %> custCol-secondary custCol-border-primary borderBottomRightRaidus3  borderRight custCol-border">
           <%= polyglot.t('Next') %>
           <span class="ion-chevron-right fontSize10 marginLeft2 textOpacity75"></span>
         </a>
@@ -352,16 +370,16 @@
 
    <div class="accordion-child" id="BuyWizardBTCReturnAddress">
       <div class="bar barTxt h6 paddingLeft15 custCol-secondary">
-        <%= polyglot.t('BitcoinReturnAddress') %>
-        <div class="floatRight marginTop9"><img src="imgs/bitcoin-accepted.png" style="width: 80px;" /></div>
+        <%= polyglot.t('DashReturnAddress') %>
+        <div class="floatRight marginTop9"><img src="imgs/dash-accepted.png" style="width: 80px;" /></div>
       </div>
       <div class="flexContainer flex-border customThemeScrollbar homeModal-settings homeModal-settings-noSearch scrollOverflow custCol-primary">
-        <p class="padding15 textOpacity75 margin0"><%= polyglot.t('BitcoinReturnAddressInfo') %></p>
+        <p class="padding15 textOpacity75 margin0"><%= polyglot.t('DashReturnAddressInfo') %></p>
         <div class="flexRow">
-          <form class="flexRow custCol-border borderTop" id="buyWizardBitcoinReturnForm">
+          <form class="flexRow custCol-border borderTop" id="buyDashWizardBitcoinReturnForm">
             <div class="flexCol-12 custCol-border positionWrapper">
-              <input type="text" name="refund_address" class="fieldItem custCol-text" id="buyWizardBitcoinAddressInput"
-                     placeholder="<%= polyglot.t('BitcoinReturnAddressPlaceholder') %>"
+              <input type="text" name="refund_address" class="fieldItem custCol-text" id="buyDashWizardBitcoinAddressInput"
+                     placeholder="<%= polyglot.t('DashReturnAddressPlaceholder') %>"
                      pattern="<%= config.bitcoinValidationRegex %>"
                      value="<%= ob.user.refund_address %>" required />
               <% if(config.testnet) { %>
@@ -374,12 +392,13 @@
             </div>
           </form>
           <div class="width100 marginTop30 lineHeight21 alignCenter">
-            <a href="https://openbazaar.zendesk.com/hc/en-us/articles/207535416"
+          <!-- SCENARIOS TO BE HANDLED LATER -->
+<!--             <a href="https://openbazaar.zendesk.com/hc/en-us/articles/207535416"
                class="marginRight10 underline js-externalLink">
-              <%= polyglot.t('buyFlow.CantFindAddress') %>
-            </a><br/>
-            <a href="https://rushwallet.com/" class="underline js-externalLink"><%= polyglot.t('buyFlow.NeedTempAddress') %></a>
-            <span class="ion-help-circled fontSize12 custCol-text tooltip tooltip-left" data-tooltip="<%= polyglot.t('buyFlow.NeedTempAddressHelper') %>"></span>
+              <%= polyglot.t('buyFlow.CantFindDashAddress') %>
+            </a><br/> -->
+<!--             <a href="https://rushwallet.com/" class="underline js-externalLink"><%= polyglot.t('buyFlow.NeedTempDashAddress') %></a>
+            <span class="ion-help-circled fontSize12 custCol-text tooltip tooltip-left" data-tooltip="<%= polyglot.t('buyFlow.NeedTempAddressHelper') %>"></span> -->
           </div>
         </div>
       </div>
@@ -388,7 +407,7 @@
           <span class="ion-chevron-left fontSize10 marginRight2 textOpacity75"></span>
           <%= polyglot.t('Back') %>
         </a>
-        <a class="btn btn-bar btn-half js-buyWizardReturnNext custCol-secondary custCol-border-primary borderBottomRightRaidus3">
+        <a class="btn btn-bar btn-half js-buyDashWizardReturnNext custCol-secondary custCol-border-primary borderBottomRightRaidus3">
           <%= polyglot.t('Next') %>
           <span class="ion-chevron-right fontSize10 marginLeft2 textOpacity75"></span>
         </a>
@@ -397,79 +416,79 @@
 
     <div class="accordion-child" id="BuyWizardShipTo">
       <div class="bar barTxt h6 paddingLeft15 custCol-secondary">
-        <div class="js-buyWizardAddress">
+        <div class="js-buyDashWizardAddress">
           <%= polyglot.t('ShipTo') %>
-          <a class="btn btn-txt custCol-primary rowTop10 pull-right js-buyWizardNewAddressBtn"><%= polyglot.t('NewAddress') %></a>
+          <a class="btn btn-txt custCol-primary rowTop10 pull-right js-buyDashWizardNewAddressBtn"><%= polyglot.t('NewAddress') %></a>
         </div>
-        <div class="js-buyWizardNewAddress hide">
+        <div class="js-buyDashWizardNewAddress hide">
           <%= polyglot.t('ShipTo') %>
         </div>
       </div>
-      <div class="flexContainer customThemeScrollbar homeModal-settings homeModal-settings-noSearch custCol-border scrollOverflow custCol-primary js-buyWizardAddressScroller">
+      <div class="flexContainer customThemeScrollbar homeModal-settings homeModal-settings-noSearch custCol-border scrollOverflow custCol-primary js-buyDashWizardAddressScroller">
         <div class="flexRow custCol-secondary">
-          <div class="flex-border flexExpand js-buyWizardAddresses">
+          <div class="flex-border flexExpand js-buyDashWizardAddresses">
             <!--insert addresses-->
           </div>
-          <form id="buyWizardNewAddressForm" class="js-buyWizardNewAddress flex-border flexExpand custCol-primary hide">
+          <form id="buyDashWizardNewAddressForm" class="js-buyDashWizardNewAddress flex-border flexExpand custCol-primary hide">
             <div class="flexRow custCol-border borderTop">
               <div class="flexCol-5 custCol-border">
                 <div class="fieldItem">
-                  <label for="buyWizardNameInput"><%= polyglot.t('ShipToName') %></label>
+                  <label for="buyDashWizardNameInput"><%= polyglot.t('ShipToName') %></label>
                 </div>
               </div>
               <div class="flexCol-7 custCol-border">
-                <input type="text" name="new_ship_to_name" class="fieldItem custCol-text" id="buyWizardNameInput" required/>
+                <input type="text" name="new_ship_to_name" class="fieldItem custCol-text" id="buyDashWizardNameInput" required/>
               </div>
             </div>
             <div class="flexRow">
               <div class="flexCol-5 custCol-border">
                 <div class="fieldItem">
-                  <label for="buyWizardStreetInput"><%= polyglot.t('ShipToStreet') %></label>
+                  <label for="buyDashWizardStreetInput"><%= polyglot.t('ShipToStreet') %></label>
                 </div>
               </div>
               <div class="flexCol-7 custCol-border">
-                <input type="text" name="new_ship_to_street" class="fieldItem custCol-text" id="buyWizardStreetInput" required/>
+                <input type="text" name="new_ship_to_street" class="fieldItem custCol-text" id="buyDashWizardStreetInput" required/>
               </div>
             </div>
             <div class="flexRow">
               <div class="flexCol-5 custCol-border">
                 <div class="fieldItem">
-                  <label for="buyWizardCityInput"><%= polyglot.t('ShipToCity') %></label>
+                  <label for="buyDashWizardCityInput"><%= polyglot.t('ShipToCity') %></label>
                 </div>
               </div>
               <div class="flexCol-7 custCol-border">
-                <input type="text" name="new_ship_to_city" class="fieldItem custCol-text" id="buyWizardCityInput" required/>
+                <input type="text" name="new_ship_to_city" class="fieldItem custCol-text" id="buyDashWizardCityInput" required/>
               </div>
             </div>
             <div class="flexRow">
               <div class="flexCol-5 custCol-border">
                 <div class="fieldItem">
-                  <label for="buyWizardStateInput"><%= polyglot.t('ShipToState') %></label>
+                  <label for="buyDashWizardStateInput"><%= polyglot.t('ShipToState') %></label>
                 </div>
               </div>
               <div class="flexCol-7 custCol-border">
-                <input type="text" name="new_ship_to_state" class="fieldItem custCol-text js-buyWizardStateInput" id="buyWizardStateInput" required/>
+                <input type="text" name="new_ship_to_state" class="fieldItem custCol-text js-buyDashWizardStateInput" id="buyDashWizardStateInput" required/>
               </div>
             </div>
             <div class="flexRow">
               <div class="flexCol-5 custCol-border">
                 <div class="fieldItem">
-                  <label for="buyWizardPostalInput"><%= polyglot.t('ShipToPostalCode') %></label>
+                  <label for="buyDashWizardPostalInput"><%= polyglot.t('ShipToPostalCode') %></label>
                 </div>
               </div>
               <div class="flexCol-7 custCol-border">
-                <input type="text" name="new_ship_to_street" class="fieldItem custCol-text js-buyWizardPostalInput" id="buyWizardPostalInput" required/>
+                <input type="text" name="new_ship_to_street" class="fieldItem custCol-text js-buyDashWizardPostalInput" id="buyDashWizardPostalInput" required/>
               </div>
             </div>
             <div class="flexRow">
               <div class="flexCol-5 custCol-border">
                 <div class="fieldItem">
-                  <label for="buyWizardStreetInput"><%= polyglot.t('ShipToCountry') %></label>
+                  <label for="buyDashWizardStreetInput"><%= polyglot.t('ShipToCountry') %></label>
                 </div>
               </div>
               <div class="flexCol-7 custCol-border">
                 <div class="fieldItem padding0">
-                  <div class="fieldItem-selectWrapper chosen-relative noIcon js-buyWizardCountryWrapper"></div>
+                  <div class="fieldItem-selectWrapper chosen-relative noIcon js-buyDashWizardCountryWrapper"></div>
                 </div>
               </div>
             </div>
@@ -477,38 +496,38 @@
         </div>
       </div>
       <div class="bar barFlush custCol-secondary borderBottomLeftRaidus3 borderBottomRightRaidus3">
-        <a class="btn btn-bar btn-half js-buyWizardAddress js-buyWizardAddressBack custCol-secondary borderBottomLeftRaidus3 borderRight custCol-border-primary">
+        <a class="btn btn-bar btn-half js-buyDashWizardAddress js-buyDashWizardAddressBack custCol-secondary borderBottomLeftRaidus3 borderRight custCol-border-primary">
           <span class="ion-chevron-left fontSize10 marginRight2 textOpacity75"></span>
           <%= polyglot.t('Back') %>
         </a>
-        <a class="btn btn-bar btn-half disabled js-buyWizardAddress js-buyWizardAddressNext custCol-secondary custCol-border-primary borderBottomRightRaidus3">
+        <a class="btn btn-bar btn-half disabled js-buyDashWizardAddress js-buyDashWizardAddressNext custCol-secondary custCol-border-primary borderBottomRightRaidus3">
           <%= polyglot.t('Next') %>
           <span class="ion-chevron-right fontSize10 marginLeft2 textOpacity75"></span>
         </a>
-        <a class="btn btn-bar btn-half js-buyWizardNewAddressCancel js-buyWizardNewAddress hide custCol-secondary borderBottomLeftRaidus3"><%= polyglot.t('Cancel') %></a>
-        <a class="btn btn-bar btn-half js-buyWizardNewAddressSave js-buyWizardNewAddress hide custCol-secondary custCol-border-primary borderBottomRightRaidus3"><%= polyglot.t('Save') %></a>
+        <a class="btn btn-bar btn-half js-buyDashWizardNewAddressCancel js-buyDashWizardNewAddress hide custCol-secondary borderBottomLeftRaidus3"><%= polyglot.t('Cancel') %></a>
+        <a class="btn btn-bar btn-half js-buyDashWizardNewAddressSave js-buyDashWizardNewAddress hide custCol-secondary custCol-border-primary borderBottomRightRaidus3"><%= polyglot.t('Save') %></a>
       </div>
     </div>
     <div class="accordion-child" id="BuyWizardDetails">
       <div class="bar barTxt h6 paddingLeft15 custCol-secondary">
-        <div class="js-buyWizardOrderDetails">
+        <div class="js-buyDashWizardOrderDetails">
           <%= polyglot.t('OrderDetails') %>
           <div class="pull-right"><%= polyglot.t('buyFlow.total') %>
-            <span class="js-buyWizardDetailsBTCTotal"></span> BTC
+            <span class="js-buyDashWizardDetailsBTCTotal"></span> BTC
             <% if(ob.userCurrencyCode != 'BTC'){ %>
-            (<span class="textOpacity75 js-buyWizardDetailsTotal"></span>)
+            (<span class="textOpacity75 js-buyDashWizardDetailsTotal"></span>)
             <% } %>
           </div>
         </div>
-        <div class="js-buyWizardOrderSummary hide">
+        <div class="js-buyDashWizardOrderSummary hide">
           <%= polyglot.t('OrderSummary') %>
         </div>
       </div>
-      <div class="flexContainer flex-border homeModal-settings homeModal-settings-noSearch js-buyWizardInsertDetails scrollOverflow custCol-primary customThemeScrollbar">
+      <div class="flexContainer flex-border homeModal-settings homeModal-settings-noSearch js-buyDashWizardInsertDetails scrollOverflow custCol-primary customThemeScrollbar">
       <!--inser details view-->
       </div>
       <div class="bar barFlush custCol-secondary borderBottomLeftRaidus3 borderBottomRightRaidus3">
-        <a class="btn btn-bar btn-half js-buyWizardPurchaseBack custCol-secondary borderBottomLeftRaidus3 borderRight custCol-border-primary">
+        <a class="btn btn-bar btn-half js-buyDashWizardPurchaseBack custCol-secondary borderBottomLeftRaidus3 borderRight custCol-border-primary">
           <span class="ion-chevron-left fontSize10 marginRight2 textOpacity75"></span>
           <%= polyglot.t('Back') %>
         </a>
@@ -517,13 +536,13 @@
           <%= polyglot.t('buyFlow.BuyOwnProductMsg') %>
         </div>
         <% } else { %>
-        <a class="btn btn-bar btn-half  js-buyWizardSendPurchase custCol-secondary custCol-border-primary borderBottomRightRaidus3">
+        <a class="btn btn-bar btn-half  js-buyDashWizardSendPurchase custCol-secondary custCol-border-primary borderBottomRightRaidus3">
           <%= polyglot.t('buyFlow.PayForOrder') %>
           <span class="ion-chevron-right fontSize10 marginLeft2 textOpacity75"></span>
         </a>
         <% } %>
-        <span class="btn btn-bar btn-half disabled js-buyWizardPendingMsg hide custCol-secondary custCol-border-primary borderBottomRightRaidus3"><%= polyglot.t('PaymentPending') %></span>
-        <a class="btn btn-bar btn-wide  js-buyWizardCloseSummary custCol-secondary borderBottomLeftRaidus3 borderBottomRightRaidus3 hide"><%= polyglot.t('Close') %></a>
+        <span class="btn btn-bar btn-half disabled js-buyDashWizardPendingMsg hide custCol-secondary custCol-border-primary borderBottomRightRaidus3"><%= polyglot.t('PaymentPending') %></span>
+        <a class="btn btn-bar btn-wide  js-buyDashWizardCloseSummary custCol-secondary borderBottomLeftRaidus3 borderBottomRightRaidus3 hide"><%= polyglot.t('Close') %></a>
       </div>
     </div>
   </div>
