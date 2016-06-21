@@ -55,7 +55,7 @@
 </div>
 <div class="homeModal-accordion accordion js-buyDashWizardAccordion">
   <div class="accordion-window">
-    <% if(ob.user.refund_address === ""){ %>
+    <% if(ob.user.dash_refund_address === ""){ %>
       <div class="accordion-child" id="BuyWizardBitcoinWallet">
         <div class="bar barTxt h6 paddingLeft15 custCol-secondary">
           <%= polyglot.t('buyFlow.DashWallet') %>
@@ -353,7 +353,7 @@
         </div>
       </div>
       <div class="bar barFlush custCol-secondary borderBottomLeftRaidus3 borderBottomRightRaidus3">
-         <% if(ob.user.refund_address === ""){ %>
+         <% if(ob.user.dash_refund_address === ""){ %>
           <a class="btn btn-bar btn-half js-buyDashWizardModBack custCol-secondary borderBottomLeftRaidus3 borderRight custCol-border-primary">
             <span class="ion-chevron-left fontSize10 marginRight2 textOpacity75"></span>
             <%= polyglot.t('Back') %>
@@ -378,10 +378,10 @@
         <div class="flexRow">
           <form class="flexRow custCol-border borderTop" id="buyDashWizardBitcoinReturnForm">
             <div class="flexCol-12 custCol-border positionWrapper">
-              <input type="text" name="refund_address" class="fieldItem custCol-text" id="buyDashWizardBitcoinAddressInput"
+              <input type="text" name="dash_refund_address" class="fieldItem custCol-text" id="buyDashWizardDashAddressInput"
                      placeholder="<%= polyglot.t('DashReturnAddressPlaceholder') %>"
-                     pattern="<%= config.bitcoinValidationRegex %>"
-                     value="<%= ob.user.refund_address %>" required />
+                     pattern="<%= config.dashValidationRegex %>"
+                     value="<%= ob.user.dash_refund_address %>" required />
               <% if(config.testnet) { %>
               <div class="positionTopRight padding10">
                 <span class="btn btn-txt custCol-secondary tooltip tooltip-left tooltip-box" data-tooltip="<%= polyglot.t('TestnetAddressHelp') %>">
@@ -513,8 +513,8 @@
         <div class="js-buyDashWizardOrderDetails">
           <%= polyglot.t('OrderDetails') %>
           <div class="pull-right"><%= polyglot.t('buyFlow.total') %>
-            <span class="js-buyDashWizardDetailsBTCTotal"></span> BTC
-            <% if(ob.userCurrencyCode != 'BTC'){ %>
+            <span class="js-buyDashWizardDetailsDASHTotal"></span> DASH
+            <% if(ob.userCurrencyCode != 'DASH'){ %>
             (<span class="textOpacity75 js-buyDashWizardDetailsTotal"></span>)
             <% } %>
           </div>

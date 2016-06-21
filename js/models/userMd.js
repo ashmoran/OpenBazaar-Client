@@ -19,6 +19,7 @@ module.exports = Backbone.Model.extend({
     //currency: "US Dollar", //set by user action, not by server
 
     refund_address: "", //buyer’s refund address (string)
+    dash_refund_address: "", //buyer’s Dash refund address (string)
     currency_code: "BTC", //may either be “btc” or a currency from this list. (formatted string)
     country: "UNITED_STATES", //the location of the user. must be a formatted string from this list. (formatted string)
 

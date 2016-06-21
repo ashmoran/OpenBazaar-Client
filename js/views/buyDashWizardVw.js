@@ -118,7 +118,7 @@ module.exports = baseModal.extend({
     this.partialPaymentAmount = data.amount_funded;
     payMsg = window.polyglot.t('transactions.BuyerPaidMessage', {
       paidAmount: templateHelpers.intlNumFormat(this.partialPaymentAmount, 8),
-      totalAmount: templateHelpers.intlNumFormat(this.model.get('totalBTCDisplayPrice'), 8)
+      totalAmount: templateHelpers.intlNumFormat(this.model.get('totalDASHDisplayPrice'), 8)
     });
 
     this.$('.js-partialPaymentMsg')
@@ -444,7 +444,7 @@ module.exports = baseModal.extend({
 
   returnNext: function(){
     var self = this,
-        bitCoinReturnAddr = this.$el.find('#buyDashWizardBitcoinAddressInput').val(),
+        bitCoinReturnAddr = this.$el.find('#buyDashWizardDashAddressInput').val(),
         modForm = this.$el.find('#buyDashWizardBitcoinReturnForm');
 
     modForm.addClass('formChecked');
@@ -496,7 +496,7 @@ module.exports = baseModal.extend({
         formData = new FormData(),
         moderatorID = this.model.get('selectedModerator').guid || "",
         selectedAddress = this.model.get('selectedAddress'),
-        bitCoinReturnAddr = this.$('#buyDashWizardBitcoinAddressInput').val();
+        bitCoinReturnAddr = this.$('#buyDashWizardDashAddressInput').val();
 
     if (!this.$('#buyDashWizardQuantity')[0].checkValidity()){
       app.simpleMessageModal.open({
@@ -613,8 +613,9 @@ module.exports = baseModal.extend({
 
   setTotalPrice: function(){
     var totalPrice = this.model.get('totalPrice'),
-        totalBTCPrice = this.model.get('totalBTCDisplayPrice'),
+        totalDASHPrice = this.model.get('totalDASHDisplayPrice'),
         userCurrency = this.model.get('userCurrencyCode'),
+        // DASHTODO: this needs handling updating when we start to allow customers to shop in DASH
         totalDisplayPrice = userCurrency == "BTC" ? app.intlNumFormat(totalPrice, 8) + " BTC" : new Intl.NumberFormat(window.lang, {
           style: 'currency',
           minimumFractionDigits: 2,
@@ -622,7 +623,7 @@ module.exports = baseModal.extend({
           currency: userCurrency
         }).format(totalPrice);
     this.$('.js-buyDashWizardDetailsTotal').text(totalDisplayPrice);
-    this.$('.js-buyDashWizardDetailsBTCTotal').text(app.intlNumFormat(totalBTCPrice, 8));
+    this.$('.js-buyDashWizardDetailsDASHTotal').text(app.intlNumFormat(totalDASHPrice, 8));
   },
 
   copyPayAddress: function(){
@@ -687,7 +688,7 @@ module.exports = baseModal.extend({
   validateInput: function(e) {
     var $input = $(e.target);
 
-    if ($input.is('#buyDashWizardBitcoinAddressInput')) {
+    if ($input.is('#buyDashWizardDashAddressInput')) {
       $input.val($input.val().trim());
     }
 
