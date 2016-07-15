@@ -5,7 +5,7 @@ var __ = require('underscore'),
     loadTemplate = require('../utils/loadTemplate'),
     countriesModel = require('../models/countriesMd'),
     baseModal = require('./baseModal'),
-    buyDetailsVw = require('./buyDetailsVw'),
+    buyDashDetailsVw = require('./buyDashDetailsVw'),
     buyAddressesVw = require('./buyAddressesVw'),
     saveToAPI = require('../utils/saveToAPI'),
     chosen = require('../utils/chosen.jquery.min.js'),
@@ -191,9 +191,9 @@ module.exports = baseModal.extend({
       baseModal.prototype.render.apply(self, arguments);
 
       //add subviews
-      self.buyDetailsView && self.buyDetailsView.remove();
-      self.buyDetailsView = new buyDetailsVw({model: self.model});
-      self.registerChild(self.buyDetailsView);
+      self.buyDashDetailsView && self.buyDashDetailsView.remove();
+      self.buyDashDetailsView = new buyDashDetailsVw({model: self.model});
+      self.registerChild(self.buyDashDetailsView);
 
       self.buyAddressesView && self.buyAddressesView.remove();
       self.buyAddressesView = new buyAddressesVw({model: self.model, userModel: self.userModel, worldwide: self.worldwide, shippingRegions: self.shippingRegions});
@@ -216,7 +216,7 @@ module.exports = baseModal.extend({
       self.buyAddressesView.render(0);
       self.$el.find('.js-buyDashWizardAddresses').append(self.buyAddressesView.el);
       //add details view
-      self.$el.find('.js-buyDashWizardInsertDetails').append(self.buyDetailsView.el);
+      self.$el.find('.js-buyDashWizardInsertDetails').append(self.buyDashDetailsView.el);
 
       //auto select first payment type
       self.$el.find("input:radio[name=radioPaymentType]:first").attr('checked', true).trigger('click');
@@ -604,7 +604,7 @@ module.exports = baseModal.extend({
     this.$el.find('.js-buyDashWizardPayPrice').text();
     this.$el.find('.js-buyDashWizardPayURL').text(data.payment_address);
     this.$el.find('.js-buyDashWizardPayLink').attr('href', payHREF);
-    this.buyDetailsView.lockForm();
+    this.buyDashDetailsView.lockForm();
   },
 
   hidePayAddress: function(){
@@ -638,7 +638,7 @@ module.exports = baseModal.extend({
     } else {
       this.accGoToID('#BuyWizardBTCReturnAddress');
     }
-    this.buyDetailsView.render();
+    this.buyDashDetailsView.render();
     this.$el.find('.js-buyDashWizardSendPurchase').removeClass('hide');
     this.$el.find('.js-buyDashWizardPendingMsg').addClass('hide');
   },

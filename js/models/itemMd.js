@@ -2,6 +2,7 @@
 
 var __ = require('underscore'),
     getBTPrice = require('../utils/getBitcoinPrice'),
+    getDASHPrice = require('../utils/getDashPrice'),
     app = require('../App').getApp(),
     countriesMd = require('./countriesMd'),
     autolinker = require( '../utils/customLinker');
@@ -198,12 +199,14 @@ module.exports = window.Backbone.Model.extend({
         vendorInternationalShipping = 0,
         vendorCurrencyInBitcoin = 0,
         vendorPriceInBitCoin = 0,
-        // I added this for symmetry but it's not necessary (yet)
-        // vendorCurrencyInDash = 0,
-        vendorPriceInDash = 0,
+        vendorCurrencyInDASH = 0,
+        vendorPriceInDASH = 0,
         vendorDomesticShippingInBitCoin = 0,
         vendorInternationalShippingInBitCoin = 0,
+        vendorDomesticShippingInDASH = 0,
+        vendorInternationalShippingInDASH = 0,
         vendToUserBTCRatio = 0,
+        vendToUserDASHRatio = 0,
         newAttributes = {};
 
     if (this.get('vendor_offer').listing.shipping) {
@@ -212,19 +215,15 @@ module.exports = window.Backbone.Model.extend({
     }
 
     if (userCCode) {
-      // DASHTODO: pass in dsAve?
+      // DASHTODO: this is duplicated entirely below, to provide a DASH price – consider merging
       getBTPrice(vendorCCode, function(btAve){
-        var dsAve = btAve / 66; // Fake price: 1 DASH = 1/66 BTC
         vendorCurrencyInBitcoin = btAve;
         vendorPriceInBitCoin = Number(vendorPrice / btAve);
-        vendorPriceInDash = Number(vendorPrice / dsAve);
-        // DASHTODO: shipping (physical items)
         vendorDomesticShippingInBitCoin = Number(vendorDomesticShipping / btAve);
         vendorInternationalShippingInBitCoin = Number(vendorInternationalShipping / btAve);
         //if vendor and user currency codes are the same, multiply by one to avoid rounding errors
         vendToUserBTCRatio = userCCode == vendorCCode ? 1 : window.currentBitcoin/vendorCurrencyInBitcoin;
         newAttributes.vendorBTCPrice = vendorPriceInBitCoin;
-        newAttributes.vendorDASHPrice = vendorPriceInDash;
         newAttributes.domesticShippingBTC = vendorDomesticShippingInBitCoin;
         newAttributes.internationalShippingBTC = vendorInternationalShippingInBitCoin;
 
@@ -259,6 +258,55 @@ module.exports = window.Backbone.Model.extend({
           newAttributes.displayInternationalShipping = app.intlNumFormat(vendorInternationalShippingInBitCoin, 4) + " BTC";
         }
         //set to random so a change event is always fired
+        newAttributes.priceSet = Math.random();
+        self.set(newAttributes);
+        typeof callback == 'function' && callback();
+      });
+
+      getDASHPrice(vendorCCode, function(dashAve){
+        vendorCurrencyInDASH = dashAve;
+        vendorPriceInDASH = Number(vendorPrice / dashAve);
+        vendorDomesticShippingInDASH = Number(vendorDomesticShipping / dashAve);
+        vendorInternationalShippingInDASH = Number(vendorInternationalShipping / dashAve);
+        //if vendor and user currency codes are the same, multiply by one to avoid rounding errors
+        vendToUserDASHRatio = userCCode == vendorCCode ? 1 : window.currentDash/vendorCurrencyInDASH;
+        newAttributes.vendorDASHPrice = vendorPriceInDASH;
+        newAttributes.domesticShippingDASH = vendorDomesticShippingInDASH;
+        newAttributes.internationalShippingDASH = vendorInternationalShippingInDASH;
+
+        // DASHTODO: `userCCode != 'BTC'` means "shopping in fiat"
+        if (userCCode != 'BTC'){
+          newAttributes.price = vendorPrice*vendToUserDASHRatio;
+          newAttributes.displayPrice = new Intl.NumberFormat(window.lang, {
+            style: 'currency',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            currency: userCCode
+          }).format(newAttributes.price);
+          newAttributes.domesticShipping = vendorDomesticShipping*vendToUserDASHRatio;
+          newAttributes.displayDomesticShipping = new Intl.NumberFormat(window.lang, {
+            style: 'currency',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            currency: userCCode
+          }).format(newAttributes.domesticShipping);
+          newAttributes.internationalShipping = vendorInternationalShipping*vendToUserDASHRatio;
+          newAttributes.displayInternationalShipping = new Intl.NumberFormat(window.lang, {
+            style: 'currency',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+            currency: userCCode
+          }).format(newAttributes.internationalShipping);
+        } else {
+          newAttributes.price = vendorPriceInDASH;
+          newAttributes.displayPrice = app.intlNumFormat(vendorPriceInDASH, 4) + " DASH";
+          newAttributes.domesticShipping = vendorDomesticShippingInDASH;
+          newAttributes.displayDomesticShipping = app.intlNumFormat(vendorDomesticShippingInDASH, 4) + " DASH";
+          newAttributes.internationalShipping = vendorInternationalShippingInDASH;
+          newAttributes.displayInternationalShipping = app.intlNumFormat(vendorInternationalShippingInDASH, 4) + " DASH";
+        }
+        //set to random so a change event is always fired
+        // DASHTODO: adding Dash means we're doing this twice!
         newAttributes.priceSet = Math.random();
         self.set(newAttributes);
         typeof callback == 'function' && callback();
